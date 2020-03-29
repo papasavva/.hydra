@@ -1,100 +1,243 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Alexandros Papasavva
+# zsh dotfile
+# Notes:
+#       Turbo Charged zsh shell configuration under 0.1 seconds
+#       Everything needed is included to the dotfile except the plugins
+#       Spaceship is installed with npm
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/papas/.oh-my-zsh"
+# LoadProfiler. This must be at the beggining of the file and at the end, don't forget to include "zprof"
+zmodload zsh/zprof
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+#  ___  ___  _   _ _ __ ___ ___  ___
+# / __|/ _ \| | | | '__/ __/ _ \/ __|
+# \__ \ (_) | |_| | | | (_|  __/\__ \
+# |___/\___/ \__,_|_|  \___\___||___/
 
+source ~/.zsh/plugins/z/z.sh
+source ~/.zsh/plugins/k/k.plugin.zsh
+source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+#                                  _
+#  _ __  _ __ ___  _ __ ___  _ __ | |_
+# | '_ \| '__/ _ \| '_ ` _ \| '_ \| __|
+# | |_) | | | (_) | | | | | | |_) | |_
+# | .__/|_|  \___/|_| |_| |_| .__/ \__|
+# |_|                       |_|
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+SPACESHIP_PROMPT_ORDER=(
+  time          # Time stamps section
+  user          # Username section
+  dir           # Current directory section
+  host          # Hostname section
+  git           # Git section (git_branch + git_status)
+  package       # Package version
+  node          # Node.js section
+  golang        # Go section
+  docker        # Docker section
+  terraform     # Terraform workspace section
+  exec_time     # Execution time
+  battery       # Battery level and status
+  exit_code     # Exit code section
+  char          # Prompt character
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  line_sep      # Line break
+)
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# PROMPT
+SPACESHIP_PROMPT_SYMBOL="➜"
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_PROMPT_PREFIXES_SHOW=true
+SPACESHIP_PROMPT_SUFFIXES_SHOW=true
+SPACESHIP_PROMPT_DEFAULT_PREFIX="via "
+SPACESHIP_PROMPT_DEFAULT_SUFFIX=" "
 
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Time (time)
+SPACESHIP_TIME_SHOW=true
+SPACESHIP_TIME_PREFIX="at "
+SPACESHIP_TIME_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_TIME_FORMAT=false
+SPACESHIP_TIME_12HR=false
+SPACESHIP_TIME_COLOR="yellow"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# Username (user)
+SPACESHIP_USER_SHOW=true
+SPACESHIP_USER_PREFIX="with "
+SPACESHIP_USER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_USER_COLOR="yellow"
+SPACESHIP_USER_COLOR_ROOT="red"
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# Directory (dir)
+SPACESHIP_DIR_SHOW=true
+SPACESHIP_DIR_PREFIX="in "
+SPACESHIP_DIR_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_DIR_TRUNC=3
+SPACESHIP_DIR_COLOR="cyan"
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+# Hostname (host)
+SPACESHIP_HOST_SHOW=true
+SPACESHIP_HOST_SHOW_FULL=true
+SPACESHIP_HOST_PREFIX="at "
+SPACESHIP_HOST_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_HOST_COLOR="blue"
+SPACESHIP_HOST_COLOR_SSH="green"
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+# Git (git) (includes subsections git_branch and git_status)
+SPACESHIP_GIT_SHOW=true
+SPACESHIP_GIT_PREFIX="on "
+SPACESHIP_GIT_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_GIT_SYMBOL=" "
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+SPACESHIP_GIT_BRANCH_SHOW=true
+SPACESHIP_GIT_BRANCH_PREFIX=$SPACESHIP_GIT_SYMBOL	
+SPACESHIP_GIT_BRANCH_SUFFIX=" "
+SPACESHIP_GIT_BRANCH_COLOR="magenta"
+SPACESHIP_GIT_STATUS_MODIFIED="!"
+SPACESHIP_GIT_STATUS_RENAMED="»"
+SPACESHIP_GIT_STATUS_DELETED="✘"
+SPACESHIP_GIT_STATUS_STASHED="$"
+SPACESHIP_GIT_STATUS_UNMERGED="="
+SPACESHIP_GIT_STATUS_AHEAD="⇡"
+SPACESHIP_GIT_STATUS_BEHIND="⇣"
+SPACESHIP_GIT_STATUS_DIVERGED="⇕"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+SPACESHIP_GIT_STATUS_SHOW=true
+SPACESHIP_GIT_STATUS_PREFIX=" ["
+SPACESHIP_GIT_STATUS_SUFFIX="]"
+SPACESHIP_GIT_STATUS_COLOR="red"
+SPACESHIP_GIT_STATUS_UNTRACKED="?"
+SPACESHIP_GIT_STATUS_ADDED="+"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# Package version (package)
+SPACESHIP_PACKAGE_SHOW=true
+SPACESHIP_PACKAGE_PREFIX="is "
+SPACESHIP_PACKAGE_SUFFIX=$SPACESHIP_PROMPT_DEFAULT_SUFFIX
+SPACESHIP_PACKAGE_SYMBOL="📦 "
+SPACESHIP_PACKAGE_COLOR="red"
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+# Node.js (node)
+SPACESHIP_NODE_SHOW=true
+SPACESHIP_NODE_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
+SPACESHIP_NODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_NODE_SYMBOL="⬢ "
+SPACESHIP_NODE_DEFAULT_VERSION=""
+SPACESHIP_NODE_COLOR="green"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# Go (golang)
+SPACESHIP_GOLANG_SHOW=true
+SPACESHIP_GOLANG_PREFIX="$SPACESHIP_PROMPT_DEFAULT_PREFIX"
+SPACESHIP_GOLANG_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_GOLANG_SYMBOL="🐹 "
+SPACESHIP_GOLANG_COLOR="cyan"
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# Docker (docker)
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_PREFIX="on "
+SPACESHIP_DOCKER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_DOCKER_SYMBOL="🐳 "
+SPACESHIP_DOCKER_COLOR="cyan"
 
-source $ZSH/oh-my-zsh.sh
+# Terraform workspace (terraform)
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_TERRAFORM_PREFIX=$SPACESHIP_PROMPT_DEFAULT_PREFIX	
+SPACESHIP_TERRAFORM_SUFFIX=$SPACESHIP_PROMPT_DEFAULT_SUFFIX	
+SPACESHIP_TERRAFORM_SYMBOL="🛠️·"
+SPACESHIP_TERRAFORM_COLOR=105
 
-# User configuration
+# Execution time (exec_time)
+SPACESHIP_EXEC_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_PREFIX="took·"
+SPACESHIP_EXEC_TIME_SUFFIX=$SPACESHIP_PROMPT_DEFAULT_SUFFIX
+SPACESHIP_EXEC_TIME_COLOR="yellow"
+SPACESHIP_EXEC_TIME_ELAPSED=1
 
-# export MANPATH="/usr/local/man:$MANPATH"
+# Battery (battery)
+SPACESHIP_BATTERY_SHOW=true
+SPACESHIP_BATTERY_PREFIX=" "
+SPACESHIP_BATTERY_SUFFIX=$SPACESHIP_PROMPT_DEFAULT_SUFFIX	
+SPACESHIP_BATTERY_SYMBOL_CHARGING="⇡"
+SPACESHIP_BATTERY_SYMBOL_DISCHARGING="⇣"
+SPACESHIP_BATTERY_SYMBOL_FULL="•"
+SPACESHIP_BATTERY_THRESHOLD=30 #Show warning under this percentage
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# Exit code (exit_code)
+SPACESHIP_EXIT_CODE_SHOW=true
+SPACESHIP_EXIT_CODE_PREFIX=" "
+SPACESHIP_EXIT_CODE_SUFFIX=" "
+SPACESHIP_EXIT_CODE_SYMBOL="✘"
+SPACESHIP_EXIT_CODE_COLOR="red"
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# Char (char)
+SPACESHIP_CHAR_PREFIX=" "
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CHAR_SYMBOL="➜"
+SPACESHIP_CHAR_SYMBOL_ROOT=$SPACESHIP_CHAR_SYMBOL
+SPACESHIP_CHAR_SYMBOL_SECONDARY=$SPACESHIP_CHAR_SYMBOL
+SPACESHIP_CHAR_COLOR_SUCCESS="green"
+SPACESHIP_CHAR_COLOR_FAILURE="red"
+SPACESHIP_CHAR_COLOR_SECONDARY="yellow"
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# Vi-mode (vi_mode)
+SPACESHIP_VI_MODE_SHOW=true
+SPACESHIP_VI_MODE_PREFIX=""
+SPACESHIP_VI_MODE_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"
+SPACESHIP_VI_MODE_INSERT="[I]"
+SPACESHIP_VI_MODE_NORMAL="[N]"
+SPACESHIP_VI_MODE_COLOR="white"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Jobs (jobs)
+SPACESHIP_JOBS_SHOW=true
+SPACESHIP_JOBS_PREFIX=" "
+SPACESHIP_JOBS_SUFFIX=" "
+SPACESHIP_JOBS_SYMBOL="+"
+SPACESHIP_JOBS_COLOR="blue"
+SPACESHIP_JOBS_AMOUNT_PREFIX=" "
+SPACESHIP_JOBS_AMOUNT_SUFFIX=" "
+SPACESHIP_JOBS_AMOUNT_THRESHOLD=1
+
+#        _ _
+#   __ _| (_) __ _ ___
+#  / _` | | |/ _` / __|
+# | (_| | | | (_| \__ \
+#  \__,_|_|_|\__,_|___/
+
+# Brew alias
+alias brewp='brew pin'
+alias brews='brew list -1'
+alias brewsp='brew list --pinned'
+alias bubo='brew update && brew outdated'
+alias bubc='brew upgrade && brew cleanup'
+alias bubu='bubo && bubc'
+alias bcubo='brew update && brew cask outdated'
+alias bcubc='brew cask reinstall $(brew cask outdated) && brew cleanup'
+
+# ls colours
+alias ls='ls -G'
+ 
+#    __                  _   _
+#  / _|_   _ _ __   ___| |_(_) ___  _ __  ___
+# | |_| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+# |  _| |_| | | | | (__| |_| | (_) | | | \__ \
+# |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+
+ # Benchmark zsh startup time
+timezsh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+# Profile zsh startup time
+profzsh() {
+  shell=${1-$SHELL}
+  ZPROF=true $shell -i -c exit
+}
+
+# Profiling zsh. Must load zprof at the beggining of this file
+if [[ "$ZPROF" = true ]]; then
+  zprof
+fi
