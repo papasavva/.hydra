@@ -1,8 +1,8 @@
-antigen
 getext
 pcre2
 git
-nvm
 go
 tree
 mattisg/mattisg/adblock
+htop
+ctop

@@ -15,10 +15,6 @@ default: help ;
 git:
 	@zsh ./scripts/git.sh
 
-## Install oh my zsh
-omz:
-	@zsh ./scripts/omz.sh
-	
 ## Install packages with brew
 packages:
 	@zsh ./scripts/brew-packages.sh

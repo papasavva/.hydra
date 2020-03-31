@@ -1,9 +1,9 @@
 # Alexandros Papasavva
 # zsh dotfile
 # Notes:
-#       Turbo Charged zsh shell configuration under 0.1 seconds
-#       Everything needed is included to the dotfile except the plugins
-#       Spaceship is installed with npm
+# Turbo Charged zsh shell configuration under 0.1 seconds
+# Everything needed is included to the dotfile except the plugins
+# Spaceship is installed with npm
 
 # LoadProfiler. This must be at the beggining of the file and at the end, don't forget to include "zprof"
 zmodload zsh/zprof

@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 #
 # Helper functions and constants to be used by the rest scripts
 declare -rgA COLOURS=(

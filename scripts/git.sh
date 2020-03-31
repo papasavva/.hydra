@@ -6,6 +6,7 @@ readonly CURRENT_DIRECTORY="$( cd "$(dirname ${0})" ; pwd -P )"
 readonly HELPERS_PATH="${CURRENT_DIRECTORY}/helpers.sh"
 readonly TEMPLATES_DIRECTORY="${PARENT_DIRECTORY}/templates"
 readonly GITHUB_KEY_PATH="${HOME}/.ssh/github"
+
 # Source dependencies
 source ${HELPERS_PATH}
 

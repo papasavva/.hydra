@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#!/bin/sh
 #
 # Install brew packages and xcode cli tools if its not installed
 
@@ -7,7 +7,7 @@ readonly PARENT_PATH="$(dirname ${CURRENT_PATH})"
 readonly HELPERS_PATH="${CURRENT_PATH}/helpers.sh"
 readonly PACKAGES_PATH="${PARENT_PATH}/brew/packages"
 
-# Load depencies
+# Load depedencies
 source ${HELPERS_PATH}
 
 function install_packages() {
