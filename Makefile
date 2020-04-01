@@ -27,6 +27,10 @@ packages:
 casks:
 	@zsh ./scripts/brew-casks.sh
 
+## Install node and npm with N
+casks:
+	@zsh ./scripts/node.sh
+
 ## Backup current dotfiles and symlink templates
 dotfiles:
 	@zsh ./scripts/dotfiles.sh

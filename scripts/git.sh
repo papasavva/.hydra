@@ -10,17 +10,6 @@ readonly GITHUB_KEY_PATH="${HOME}/.ssh/github"
 # Source dependencies
 source ${HELPERS_PATH}
 
-#function exit_if_git_is_installed() {
-#    local git_index=$(brew info --json=v1 --installed | jq 'map(select(.installed != []) | .name) | index("git")')
-#    if [[ $git_index =~ [0-9] ]]
-#    then
-#          present_error "Brew package is already installed."
-#    else
-#          echo "\$my_var is NULL"
-#    fi
-#
-#    exit
-#}
 function install_git() {
   brew install git
 }
