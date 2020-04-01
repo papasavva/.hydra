@@ -10,13 +10,28 @@ readonly GITHUB_KEY_PATH="${HOME}/.ssh/github"
 # Source dependencies
 source ${HELPERS_PATH}
 
+#function exit_if_git_is_installed() {
+#    local git_index=$(brew info --json=v1 --installed | jq 'map(select(.installed != []) | .name) | index("git")')
+#    if [[ $git_index =~ [0-9] ]]
+#    then
+#          present_error "Brew package is already installed."
+#    else
+#          echo "\$my_var is NULL"
+#    fi
+#
+#    exit
+#}
+function install_git() {
+  brew install git
+}
+
 function config_git() {
   git config --global user.name "Alexandros Papasavva"
   git config --global user.email "papasavva.alexandros@gmail.com"
 }
 
 function create_github_authentication_key() {
-  ssh-keygen -t rsa -b 4096 -f ~/.ssh/github -C "github account papasavva.alexandros@gmail.com" 
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/github_rsa -C "github_rsa papasavva.alexandros@gmail.com"
 
   eval "$(ssh-agent -s)"
   ssh-add -K ${GITHUB_KEY_PATH}
@@ -35,6 +50,8 @@ function exit_if_github_authentication_key_exists() {
 
 function main(){
   make_sure_xcode_is_installed
+  exit_if_brew_package_is_installed "git"
+  install_git
   exit_if_github_authentication_key_exists
   config_git
   create_github_authentication_key

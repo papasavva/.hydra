@@ -24,6 +24,7 @@ Developed hydra with makefile and shell scipts that can download, install applic
 
 - macOS
 - ZSH
+- Developer tools via XCode
 
 ## Install
 -------
@@ -42,7 +43,7 @@ git clone https://github.com/papasavvas/hydra.git "$HOME/.hydra"
 - Use make to execute tasks
 
 ```sh
-cd "$HOME/.hydra"
+cd "~/.hydra"
 make help
 ```
 

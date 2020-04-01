@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # Helper functions and constants to be used by the rest scripts
+
 declare -rgA COLOURS=(
   [green]=$(tput setaf 2)
   [yellow]=$(tput setaf 3)
@@ -39,4 +40,14 @@ function total_files_in_directory() {
 
 function total_lines_in_file() {
   wc -l ${@} | awk {'print $1'}
+}
+
+function exit_if_brew_package_is_installed() {
+  local brew_package=${@}
+  local git_index=$(brew info --json=v1 --installed | jq  --arg brew_package "$brew_package" 'map(select(.installed != []) | .name) | index($brew_package)')
+
+  if [[ $git_index =~ [0-9] ]]; then
+    present_error "Brew package $brew_package is already installed."
+    exit
+  fi
 }

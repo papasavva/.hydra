@@ -9,7 +9,11 @@ RESET  := $(shell tput sgr0)
 TARGET_MAX_CHAR_NUM:=20
 
 default: help ;
-.PHONY: packages casks git zsh dotfiles remove header help
+.PHONY: packages casks brew git zsh dotfiles remove header help
+
+## Install brew package manager
+brew:
+	@zsh ./scripts/brew.sh
 
 ## Configure git with github
 git:
