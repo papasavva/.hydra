@@ -9,7 +9,7 @@ RESET  := $(shell tput sgr0)
 TARGET_MAX_CHAR_NUM:=20
 
 default: help ;
-.PHONY: packages casks brew git zsh dotfiles remove header help
+.PHONY: packages casks brew node git zsh dotfiles remove header help
 
 ## Install brew package manager
 brew:
@@ -28,7 +28,7 @@ casks:
 	@zsh ./scripts/brew-casks.sh
 
 ## Install node and npm with N
-casks:
+node:
 	@zsh ./scripts/node.sh
 
 ## Backup current dotfiles and symlink templates
