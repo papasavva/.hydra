@@ -1,3 +1,5 @@
 [user]
-	name = Alexandros Papasavva
-	email = papasavva.alexandros@gmail.com
+	name = Alexandros P.
+	email = papasavva@protonmail.com
+[core]
+	excludesfile = /Users/akuma/.gitignore_global
