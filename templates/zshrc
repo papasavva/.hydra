@@ -4,7 +4,7 @@
 # Turbo Charged zsh shell configuration under 0.10 seconds
 # Everything needed is included to the dotfile except the plugins
 # Spaceship is installed with npm
-
+# Note: Change default zsh to use brew
 # LoadProfiler. This must be at the beginning of the file and at the end, don't forget to include "zprof"
 zmodload zsh/zprof
 
